@@ -13,27 +13,30 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bamon.basivoc.db.DatabaseHelper;
+import com.bamon.basivoc.db.Languages;
+import com.bamon.basivoc.db.VocabItem;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
 
-    private ListView lv;
     private ListAdapter la;
-    ArrayList <String[]> vocList;
+    List <VocabItem> vocList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-        vocList = new ArrayList<>();
-        String[] test = {"test", "test auf deutsch"};
-        String[] test2 = {"apple", "apfel"};
-        vocList.add(test);
-        vocList.add(test2);
+        DatabaseHelper db = new DatabaseHelper(this, null, null, 1);
+        db.addLanguage(new Languages("Deutsch"));
+        db.addLanguage(new Languages("Englisch"));
+        db.addVocab(new VocabItem("Apfel", "Apple"), 1, 2);
+        vocList = db.getEntireVocabulary();
 
-        lv = (ListView) findViewById(R.id.listView);
+        ListView lv = (ListView) findViewById(R.id.listView);
         lv.setAdapter(new MyAdapter(this, R.layout.vocab_item, vocList));
     }
 
@@ -50,7 +53,7 @@ public class ListActivity extends AppCompatActivity {
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            String[] currentVocab = vocList.get(position);
+            VocabItem currentVocab = vocList.get(position);
 
             if (convertView == null){
                 convertView = getLayoutInflater().inflate(R.layout.vocab_item, null, false);
@@ -65,8 +68,8 @@ public class ListActivity extends AppCompatActivity {
             TextView lang1 = ((ViewHolder)convertView.getTag()).language1;
             TextView lang2 = ((ViewHolder)convertView.getTag()).language2;
 
-            lang1.setText(currentVocab[0]);
-            lang2.setText(currentVocab[1]);
+            lang1.setText(currentVocab.getPhrase1());
+            lang2.setText(currentVocab.getPhrase2());
 
             return convertView;
         }

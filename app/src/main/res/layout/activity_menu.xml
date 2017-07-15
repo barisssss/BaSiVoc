@@ -29,7 +29,8 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:elevation="0dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="startOptionsAct"/>
 
     <Button
         android:text="@string/list"

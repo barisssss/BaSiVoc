@@ -17,4 +17,9 @@ public class MenuActivity extends AppCompatActivity {
         Intent i = new Intent(this, ListActivity.class);
         startActivity(i);
     }
+
+    public void startOptionsAct(View v){
+        Intent i = new Intent(this, OptionsActivity.class);
+        startActivity(i);
+    }
 }
