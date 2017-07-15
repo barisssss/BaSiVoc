@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_options"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.bamon.basivoc.OptionsActivity">
+
+    <TextView
+        android:text="What languages would you like to practice?"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/whatLanguage" />
+
+    <Spinner
+        android:id="@+id/language1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/language2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="Practice Length"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/practiceLength" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:text=""
+        android:id="@+id/practiceLengthInput" />
+
+    <Button
+        android:text="Clear Database"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/clearDatabase"
+        style="@style/Widget.AppCompat.Button.Borderless" />
+
+    <Button
+        android:text="Accept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/acceptOptions"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored" />
+
+</LinearLayout>
