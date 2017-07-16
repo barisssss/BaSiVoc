@@ -22,4 +22,14 @@ public class MenuActivity extends AppCompatActivity {
         Intent i = new Intent(this, OptionsActivity.class);
         startActivity(i);
     }
+
+    public void startPracticeAct(View v){
+        Intent i = new Intent(this, PracticeActivity.class);
+        startActivity(i);
+    }
+
+    public void startEditAct(View v){
+        Intent i = new Intent(this, EditActivity.class);
+        startActivity(i);
+    }
 }

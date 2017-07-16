@@ -17,20 +17,39 @@
 
 
     <TextView
-        android:text="TextView"
-        android:textAlignment="center"
-        android:layout_weight="1"
+        android:id="@+id/vocAnzeige"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@mipmap/ic_launcher"
-        android:id="@+id/textView3" />
+        android:text=""
+        android:textAlignment="center" />
 
     <Button
-        android:text="Turn Around!"
+        android:id="@+id/turnAroundButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:id="@+id/button"
-        style="@style/Widget.AppCompat.Button.Borderless" />
+        android:onClick="turnAround"
+        android:text="Turn Around!" />
+
+    <Button
+        android:id="@+id/knewButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="knewwrongClicked"
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:text="I knew it!" />
+
+    <Button
+        android:id="@+id/wrongButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="knewwrongClicked"
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:text="I was wrong..." />
 
 </LinearLayout>
