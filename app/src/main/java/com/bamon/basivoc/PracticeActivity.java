@@ -10,6 +10,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.bamon.basivoc.db.DatabaseHelper;
 
+import java.util.Random;
+
 
 public class PracticeActivity extends AppCompatActivity {
     DatabaseHelper db;
@@ -20,6 +22,9 @@ public class PracticeActivity extends AppCompatActivity {
     SharedPreferences prefs;
     int rightVocs;
     int wrongVocs;
+    int length;
+    ProgressBar pb;
+    Random random;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +33,18 @@ public class PracticeActivity extends AppCompatActivity {
         prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         rightVocs = 0;
         wrongVocs = 0;
+        random = new Random();
         va = (TextView) findViewById(R.id.vocAnzeige);
         tA = (Button) findViewById(R.id.turnAroundButton);
         knew = (Button) findViewById(R.id.knewButton);
         wrong = (Button) findViewById(R.id.wrongButton);
         db = new DatabaseHelper(this, null, null, 1);
-        va.setText(db.getVocabItem(1, prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2)).getPhrase1());
+        length = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2)).size();
+        pb = (ProgressBar) findViewById(R.id.progressBar);
+        pb.setProgress(prefs.getInt("currentPracticeLength", 10));
+        va.setText(db.getVocabItem(random.nextInt(length),
+                prefs.getInt("currentLanguage1", 1),
+                prefs.getInt("currentLanguage2", 2)).getPhrase1());
 
     }
 
@@ -46,7 +57,6 @@ public class PracticeActivity extends AppCompatActivity {
 
     public void knewwrongClicked(View v){
         Button pressedButton = (Button) v;
-        ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
         pb.setProgress(pb.getProgress()+1);
         tA.setVisibility(View.VISIBLE);
         knew.setVisibility(View.GONE);

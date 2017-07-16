@@ -1,34 +1,48 @@
 package com.bamon.basivoc;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bamon.basivoc.db.DatabaseHelper;
+import com.bamon.basivoc.db.VocabItem;
 
 public class AddVocabActivity extends AppCompatActivity {
 
     TextView l1, l2;
     Button add, accept;
     EditText l1I, l2I;
+    SharedPreferences prefs;
+    DatabaseHelper dbh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_vocab);
-
+        dbh = new DatabaseHelper(this, null, null, 1);
+        prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         l1 = (TextView) findViewById(R.id.language1);
         l2 = (TextView) findViewById(R.id.language2);
         add = (Button) findViewById(R.id.addButton);
         accept = (Button) findViewById(R.id.acceptButton);
         l1I = (EditText) findViewById(R.id.language1Input);
         l2I = (EditText) findViewById(R.id.language2input);
+        l1.setText(dbh.getLanguage(prefs.getInt("currentLanguage1", 1))+"");
+        l2.setText(dbh.getLanguage(prefs.getInt("currentLanguage2", 2))+"");
     }
 
     public void addButtonPressed(View v){
-
+        dbh.addVocab(new VocabItem(l1I.getText()+"", l2I.getText()+""), prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
+        l1I.setText("");
+        l2I.setText("");
+        Toast.makeText(this, "Added sucessfully", Toast.LENGTH_SHORT).show();
     }
 
     public void acceptButtonPressed(View v){
