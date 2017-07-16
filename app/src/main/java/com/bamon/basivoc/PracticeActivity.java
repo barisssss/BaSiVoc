@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.bamon.basivoc.db.DatabaseHelper;
+import com.bamon.basivoc.db.VocabItem;
 
 import java.util.Random;
 
@@ -25,6 +26,7 @@ public class PracticeActivity extends AppCompatActivity {
     int length;
     ProgressBar pb;
     Random random;
+    VocabItem vocab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +43,11 @@ public class PracticeActivity extends AppCompatActivity {
         db = new DatabaseHelper(this, null, null, 1);
         length = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2)).size();
         pb = (ProgressBar) findViewById(R.id.progressBar);
-        pb.setProgress(prefs.getInt("currentPracticeLength", 10));
-        va.setText(db.getVocabItem(random.nextInt(length),
+        pb.setMax(prefs.getInt("currentPracticeLength", 10));
+        vocab = db.getVocabItem(random.nextInt(length),
                 prefs.getInt("currentLanguage1", 1),
-                prefs.getInt("currentLanguage2", 2)).getPhrase1());
+                prefs.getInt("currentLanguage2", 2));
+        va.setText(vocab.getPhrase1());
 
     }
 
@@ -52,7 +55,7 @@ public class PracticeActivity extends AppCompatActivity {
         tA.setVisibility(View.GONE);
         knew.setVisibility(View.VISIBLE);
         wrong.setVisibility(View.VISIBLE);
-        va.setText(db.getVocabItem(1,prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2)).getPhrase2());
+        va.setText(vocab.getPhrase2());
     }
 
     public void knewwrongClicked(View v){
@@ -61,7 +64,10 @@ public class PracticeActivity extends AppCompatActivity {
         tA.setVisibility(View.VISIBLE);
         knew.setVisibility(View.GONE);
         wrong.setVisibility(View.GONE);
-        va.setText(db.getVocabItem(2, prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2)).getPhrase1());
+        vocab = db.getVocabItem(random.nextInt(length),
+                prefs.getInt("currentLanguage1", 1),
+                prefs.getInt("currentLanguage2", 2));
+        va.setText(vocab.getPhrase1());
         if(pressedButton.getText().equals("I knew it!")){
             rightVocs++;
         }
