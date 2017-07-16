@@ -73,6 +73,7 @@
         app:srcCompat="@drawable/ic_arrow_forward_black_24dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:onClick="nextClicked"
         android:contentDescription="@string/desc_next"/>
 
 </RelativeLayout>
