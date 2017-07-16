@@ -12,9 +12,9 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:progress="0"
+        android:max="10"
         android:id="@+id/progressBar" />
-
 
     <TextView
         android:id="@+id/vocAnzeige"
@@ -32,24 +32,27 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:onClick="turnAround"
+        android:visibility="visible"
         android:text="Turn Around!" />
 
     <Button
         android:id="@+id/knewButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.5"
         android:onClick="knewwrongClicked"
-        android:layout_weight="1"
-        android:visibility="gone"
-        android:text="I knew it!" />
+        android:text="I knew it!"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/wrongButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.3"
         android:onClick="knewwrongClicked"
-        android:layout_weight="1"
-        android:visibility="gone"
-        android:text="I was wrong..." />
+        android:text="I was wrong..."
+        android:visibility="gone" />
 
 </LinearLayout>

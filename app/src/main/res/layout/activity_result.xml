@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bamon.basivoc.ResultActivity">
+
+
+    <TextView
+        android:id="@+id/resultOpeningText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:text="Here is your practice result!" />
+
+    <TextView
+        android:id="@+id/rightResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/resultOpeningText"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="53dp"
+        android:text="Right:" />
+
+    <TextView
+        android:id="@+id/wrongResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/rightResults"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:text="Wrong:" />
+
+    <ImageView
+        android:id="@+id/resultIndicatorMascot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wrongResults"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="134dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/motivationalSpeech"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/resultIndicatorMascot"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="56dp"
+        android:text="Sir, you suck!" />
+
+    <TextView
+        android:id="@+id/rightResultIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/rightResults"
+        android:layout_below="@+id/rightResults"
+        android:layout_marginTop="26dp"
+        android:text="0" />
+
+    <TextView
+        android:id="@+id/wrongResultIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/wrongResults"
+        android:layout_alignTop="@+id/rightResultIndicator"
+        android:text="0" />
+</RelativeLayout>
