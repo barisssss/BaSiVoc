@@ -38,6 +38,27 @@ public class ResultActivity extends AppCompatActivity {
         rightVocabs = daten.getInt("Right");
         wrongVocabs = daten.getInt("Wrong");
 
+        rRI.setText(rightVocabs+"");
+        wRI.setText(wrongVocabs+"");
+
+        int max = rightVocabs + wrongVocabs;
+        int third1 = max / 3;
+        int third2= third1 * 2;
+
+        if(rightVocabs < third1){
+            mS.setText("Sir, you suck!");
+        }
+        else if(rightVocabs >= third1 && rightVocabs <third2){
+            mS.setText("Sir, you can do better!");
+        }
+        else if(rightVocabs >= third2 && rightVocabs < max){
+            mS.setText("Quite good!");
+        }
+        else{
+            mS.setText("My man!");
+        }
+
+
 
     }
 
