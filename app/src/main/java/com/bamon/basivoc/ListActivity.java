@@ -10,8 +10,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.bamon.basivoc.db.DatabaseHelper;
@@ -24,8 +26,10 @@ import java.util.List;
 public class ListActivity extends AppCompatActivity {
 
     private ListAdapter la;
+    DatabaseHelper db;
     List <VocabItem> vocList;
     SharedPreferences prefs;
+    Switch langSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +37,38 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-        DatabaseHelper db = new DatabaseHelper(this, null, null, 1);
-        db.addVocab(new VocabItem("Apfel", "Apple"), 1, 2);
-        vocList = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
+        db = new DatabaseHelper(this, null, null, 1);
+        langSwitch = (Switch) findViewById(R.id.langSwitch);
+
+        if(langSwitch.isChecked()){
+            vocList = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
+        } else{
+            vocList = db.getEntireVocabulary();
+        }
+
+
+        /*langSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    vocList = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
+                } else {
+                    vocList = db.getEntireVocabulary();
+                }
+            }
+        });
+
+        langSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ((Switch)v.isChecked){
+                    vocList = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
+                } else {
+                    vocList = db.getEntireVocabulary();
+                }
+            }
+        });*/
+
 
         ListView lv = (ListView) findViewById(R.id.listView);
         lv.setAdapter(new MyAdapter(this, R.layout.vocab_item, vocList));

@@ -38,9 +38,6 @@ public class OptionsActivity extends AppCompatActivity {
 
         lengthET.setText(prefs.getInt("currentPracticeLength", 10) +"");
 
-
-
-
     }
 
     public void addLangClicked(View v){
