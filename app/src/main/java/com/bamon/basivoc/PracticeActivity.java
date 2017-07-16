@@ -13,6 +13,7 @@ import com.bamon.basivoc.db.VocabItem;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 
@@ -25,12 +26,11 @@ public class PracticeActivity extends AppCompatActivity {
     SharedPreferences prefs;
     int rightVocs;
     int wrongVocs;
-    int length;
     int i;
     ProgressBar pb;
     Random random;
     VocabItem vocab;
-    ArrayList<Integer> indices;
+    List<VocabItem> vocabulary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class PracticeActivity extends AppCompatActivity {
         prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         rightVocs = 0;
         wrongVocs = 0;
+        i=0;
         random = new Random();
 
         va = (TextView) findViewById(R.id.vocAnzeige);
@@ -46,18 +47,13 @@ public class PracticeActivity extends AppCompatActivity {
         knew = (Button) findViewById(R.id.knewButton);
         wrong = (Button) findViewById(R.id.wrongButton);
         db = new DatabaseHelper(this, null, null, 1);
-        length = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2)).size();
-        indices = new ArrayList<>(length);
-        for (int i = 1; i<=length; i++){
-            indices.add(i);
-        }
-        Collections.shuffle(indices);
+        vocabulary = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
         pb = (ProgressBar) findViewById(R.id.progressBar);
         pb.setMax(prefs.getInt("currentPracticeLength", 10));
-        vocab = db.getVocabItem(indices.get(i++),
-                prefs.getInt("currentLanguage1", 1),
-                prefs.getInt("currentLanguage2", 2));
+        if(vocabulary.size() != 0) vocab = vocabulary.get(random.nextInt(vocabulary.size()));
+
         va.setText(vocab.getPhrase1());
+        vocabulary.remove(vocab);
 
     }
 
@@ -76,10 +72,14 @@ public class PracticeActivity extends AppCompatActivity {
         knew.setVisibility(View.GONE);
         wrong.setVisibility(View.GONE);
 
-        vocab = db.getVocabItem(indices.get(++i),
-                prefs.getInt("currentLanguage1", 1),
-                prefs.getInt("currentLanguage2", 2));
-        va.setText(vocab.getPhrase1());
+        if(vocabulary.size() != 0) {
+            vocab = vocabulary.get(random.nextInt(vocabulary.size()));
+        } else {
+            vocabulary = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
+            vocab = vocabulary.get(random.nextInt(vocabulary.size()));
+        }
+        if (pb.getProgress() != pb.getMax()) va.setText(vocab.getPhrase1());
+        vocabulary.remove(vocab);
         if(pressedButton.getText().equals("I knew it!")){
             rightVocs++;
         }
@@ -91,6 +91,7 @@ public class PracticeActivity extends AppCompatActivity {
             i.putExtra("Right",rightVocs);
             i.putExtra("Wrong",wrongVocs);
             startActivity(i);
+            finish();
         }
     }
 

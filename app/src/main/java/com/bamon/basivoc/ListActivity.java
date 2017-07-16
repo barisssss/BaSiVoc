@@ -5,16 +5,19 @@ import android.content.SharedPreferences;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bamon.basivoc.db.DatabaseHelper;
 import com.bamon.basivoc.db.Languages;
@@ -30,48 +33,56 @@ public class ListActivity extends AppCompatActivity {
     List <VocabItem> vocList;
     SharedPreferences prefs;
     Switch langSwitch;
+    Context context;
+    ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        context = getApplicationContext();
         prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         db = new DatabaseHelper(this, null, null, 1);
         langSwitch = (Switch) findViewById(R.id.langSwitch);
-
+        lv = (ListView) findViewById(R.id.listView);
         if(langSwitch.isChecked()){
             vocList = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
-        } else{
+            lv.setAdapter(new MyAdapter(context, R.layout.vocab_item, vocList));
+        } else {
             vocList = db.getEntireVocabulary();
+            lv.setAdapter(new MyAdapter(context, R.layout.vocab_item, vocList));
         }
 
-
-        /*langSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        langSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     vocList = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
+                    lv.setAdapter(new MyAdapter(context, R.layout.vocab_item, vocList));
                 } else {
                     vocList = db.getEntireVocabulary();
+                    lv.setAdapter(new MyAdapter(context, R.layout.vocab_item, vocList));
                 }
             }
         });
 
-        langSwitch.setOnClickListener(new View.OnClickListener() {
+
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                if ((Switch)v.isChecked){
-                    vocList = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
-                } else {
-                    vocList = db.getEntireVocabulary();
-                }
+            public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
+            {
+                AlertDialog.Builder adb = new AlertDialog.Builder(
+                        context);
+                adb.setTitle("List");
+                adb.show();
+
             }
-        });*/
+        });
 
 
-        ListView lv = (ListView) findViewById(R.id.listView);
-        lv.setAdapter(new MyAdapter(this, R.layout.vocab_item, vocList));
     }
 
     private static class ViewHolder {
@@ -107,6 +118,7 @@ public class ListActivity extends AppCompatActivity {
 
             return convertView;
         }
+
     }
 
 }

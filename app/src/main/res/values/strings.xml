@@ -17,4 +17,5 @@
     <string name="practice_length">Practice Length</string>
     <string name="clearDB">Clear Database</string>
     <string name="accept">Accept</string>
+    <string name="switchHint">Only show items of selected languages</string>
 </resources>

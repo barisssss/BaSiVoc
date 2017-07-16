@@ -17,10 +17,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="10dp"
-        android:checked="false"
-        android:splitTrack="false"
-        android:text="Only show items of selected languages "
-        tools:checked="false" />
+        android:checked="true"
+        android:text="@string/switchHint"
+        tools:checked="true" />
 
     <ListView
         android:layout_width="match_parent"
