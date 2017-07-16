@@ -13,4 +13,8 @@
     <string name="firstLangLabel">Your preferred first language:</string>
     <string name="secondLangLabel">Your preferred second language:</string>
     <string name="desc_next">Next Button</string>
+    <string name="addLang">Add another language:</string>
+    <string name="practice_length">Practice Length</string>
+    <string name="clearDB">Clear Database</string>
+    <string name="accept">Accept</string>
 </resources>
