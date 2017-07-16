@@ -1,6 +1,7 @@
 package com.bamon.basivoc;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,17 +25,17 @@ public class ListActivity extends AppCompatActivity {
 
     private ListAdapter la;
     List <VocabItem> vocList;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         DatabaseHelper db = new DatabaseHelper(this, null, null, 1);
-        db.addLanguage(new Languages("Deutsch"));
-        db.addLanguage(new Languages("Englisch"));
         db.addVocab(new VocabItem("Apfel", "Apple"), 1, 2);
-        vocList = db.getEntireVocabulary();
+        vocList = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
 
         ListView lv = (ListView) findViewById(R.id.listView);
         lv.setAdapter(new MyAdapter(this, R.layout.vocab_item, vocList));

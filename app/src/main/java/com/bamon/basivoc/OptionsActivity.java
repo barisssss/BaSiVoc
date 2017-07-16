@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.bamon.basivoc.db.DatabaseHelper;
 import com.bamon.basivoc.db.Languages;
@@ -19,7 +20,7 @@ import java.util.List;
 public class OptionsActivity extends AppCompatActivity {
 
     Spinner lang1, lang2;
-    EditText lengthET;
+    EditText lengthET, addLangET;
     SharedPreferences prefs;
 
     @Override
@@ -35,13 +36,20 @@ public class OptionsActivity extends AppCompatActivity {
 
         loadSpinnerData();
 
-        lang1.setSelection(prefs.getInt("currentLanguage1", 1) - 1);
-        lang2.setSelection(prefs.getInt("currentLanguage2", 2) - 1);
         lengthET.setText(prefs.getInt("currentPracticeLength", 10) +"");
 
 
 
 
+    }
+
+    public void addLangClicked(View v){
+        addLangET = (EditText) findViewById(R.id.newLangET);
+        DatabaseHelper db = new DatabaseHelper(this, null, null, 1);
+        db.addLanguage(new Languages(addLangET.getText()+""));
+        addLangET.setText("");
+        loadSpinnerData();
+        Toast.makeText(this, "Language added!", Toast.LENGTH_SHORT).show();
     }
 
     public void acceptOptions(View v){
@@ -56,6 +64,7 @@ public class OptionsActivity extends AppCompatActivity {
 
         Intent i = new Intent(this, MenuActivity.class);
         startActivity(i);
+        finish();
     }
 
     private void loadSpinnerData() {
@@ -75,6 +84,8 @@ public class OptionsActivity extends AppCompatActivity {
         // attaching data adapter to spinner
         lang1.setAdapter(dataAdapter);
         lang2.setAdapter(dataAdapter);
+        lang1.setSelection(prefs.getInt("currentLanguage1", 1) - 1);
+        lang2.setSelection(prefs.getInt("currentLanguage2", 2) - 1);
     }
 
 }

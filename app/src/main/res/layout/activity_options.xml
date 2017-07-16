@@ -12,15 +12,21 @@
     tools:context="com.bamon.basivoc.OptionsActivity">
 
     <TextView
-        android:text="What languages would you like to practice?"
+        android:id="@+id/labelForLang1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/whatLanguage" />
+        android:text="@string/firstLangLabel" />
 
     <Spinner
         android:id="@+id/spinner_language1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/labelForLang2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/secondLangLabel" />
 
     <Spinner
         android:id="@+id/spinner_language2"
@@ -28,7 +34,36 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:text="Practice Length"
+        android:id="@+id/addLangText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/addLang"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/newLangET"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/addBtn"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="addLangClicked"
+            android:text="@string/add" />
+    </LinearLayout>
+
+    <TextView
+        android:text="@string/practice_length"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/practiceLength" />
@@ -41,14 +76,14 @@
         android:id="@+id/practiceLengthInput" />
 
     <Button
-        android:text="Clear Database"
+        android:text="@string/clearDB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/clearDatabase"
         style="@style/Widget.AppCompat.Button.Borderless" />
 
     <Button
-        android:text="Accept"
+        android:text="@string/accept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/acceptOptions"

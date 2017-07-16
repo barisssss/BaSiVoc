@@ -33,6 +33,7 @@ public class SplashActivity extends AppCompatActivity {
         if(doesDatabaseExist(this, "vocabulary.db")){
             Intent i = new Intent(this, MenuActivity.class);
             startActivity(i);
+            finish();
         } else {
             prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
             lang1 = (Spinner) findViewById(R.id.lang1Spinner);
@@ -46,8 +47,6 @@ public class SplashActivity extends AppCompatActivity {
             loadSpinnerData();
             lang1.setSelection(0);
             lang2.setSelection(1);
-
-
         }
 
     }
@@ -79,6 +78,7 @@ public class SplashActivity extends AppCompatActivity {
 
         Intent i = new Intent(this, MenuActivity.class);
         startActivity(i);
+        finish();
     }
 
     private static boolean doesDatabaseExist(Context context, String dbName) {
