@@ -3,55 +3,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bamon.basivoc.EditActivity">
+    tools:context="com.bamon.basivoc.AddVocabActivity">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/language2input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="81dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
-        android:layout_below="@+id/editText2"
+        android:text=""
+        android:layout_below="@+id/language1Input"
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/language1Input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text=""
         android:layout_marginTop="49dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/language2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText"
+        android:layout_alignBottom="@+id/language2input"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="40dp"
-        android:text="TextView" />
+        android:text="Language2" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/language1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText2"
+        android:layout_alignBottom="@+id/language1Input"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="40dp"
-        android:text="TextView" />
+        android:text="Language1" />
 
     <Button
         android:id="@+id/addButton"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="70dp"
+        android:layout_below="@+id/language2input"
+        android:onClick="addButtonPressed"
         android:text="@string/add" />
+
+    <Button
+        android:id="@+id/acceptButton"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="acceptButtonPressed"
+        android:text="Accept" />
 </RelativeLayout>

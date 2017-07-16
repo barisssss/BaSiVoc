@@ -29,7 +29,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void startEditAct(View v){
-        Intent i = new Intent(this, EditActivity.class);
+        Intent i = new Intent(this, AddVocabActivity.class);
         startActivity(i);
     }
 }

@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MenuActivity" />
         <activity android:name=".ListActivity" />
-        <activity android:name=".EditActivity" />
+        <activity android:name=".AddVocabActivity" />
         <activity android:name=".OptionsActivity" />
         <activity android:name=".PracticeActivity" />
         <activity android:name=".SplashActivity">
