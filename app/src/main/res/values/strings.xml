@@ -8,4 +8,9 @@
     <string name="sprache_2">Sprache 2</string>
     <string name="sprache_1">Sprache 1</string>
     <string name="add">Add</string>
+    <string name="greeting">Hey, this is your first time using your new Vocabulary Trainer!</string>
+    <string name="hint">Let\'s get started by selecting which languages you\'d like to practice first:</string>
+    <string name="firstLangLabel">Your preferred first language:</string>
+    <string name="secondLangLabel">Your preferred second language:</string>
+    <string name="desc_next">Next Button</string>
 </resources>

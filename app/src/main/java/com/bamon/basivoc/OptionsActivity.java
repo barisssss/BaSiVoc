@@ -33,9 +33,13 @@ public class OptionsActivity extends AppCompatActivity {
         lang2 = (Spinner) findViewById(R.id.spinner_language2);
         lengthET = (EditText) findViewById(R.id.practiceLengthInput);
 
-        lang1.setSelection(prefs.getInt());
-
         loadSpinnerData();
+
+        lang1.setSelection(prefs.getInt("currentLanguage1", 1) - 1);
+        lang2.setSelection(prefs.getInt("currentLanguage2", 2) - 1);
+        lengthET.setText(prefs.getInt("currentPracticeLength", 10) +"");
+
+
 
 
     }
@@ -62,7 +66,7 @@ public class OptionsActivity extends AppCompatActivity {
         List<Languages> languages = db.getAllLanguages();
 
         // Creating adapter for spinner
-        ArrayAdapter<Languages> dataAdapter = new ArrayAdapter<Languages>(this,
+        ArrayAdapter<Languages> dataAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, languages);
 
         // Drop down layout style - list view with radio button
@@ -71,8 +75,6 @@ public class OptionsActivity extends AppCompatActivity {
         // attaching data adapter to spinner
         lang1.setAdapter(dataAdapter);
         lang2.setAdapter(dataAdapter);
-        lang1.setSelection(0);
-        lang2.setSelection(1);
     }
 
 }
