@@ -23,7 +23,7 @@
         android:layout_weight="1"
         android:background="@mipmap/ic_launcher"
         android:text=""
-        android:textAlignment="center" />
+        android:gravity="center" />
 
     <Button
         android:id="@+id/turnAroundButton"

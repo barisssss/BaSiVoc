@@ -3,6 +3,7 @@ package com.bamon.basivoc;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,10 +58,17 @@ public class ResultActivity extends AppCompatActivity {
         else{
             mS.setText("My man!");
         }
-
-
-
     }
 
+    public void startMenuAct(View v){
+        Intent i = new Intent(this, MenuActivity.class);
+        startActivity(i);
+        finish();
+    }
 
+    public void startPracticeAct(View v){
+        Intent i = new Intent(this, PracticeActivity.class);
+        startActivity(i);
+        finish();
+    }
 }

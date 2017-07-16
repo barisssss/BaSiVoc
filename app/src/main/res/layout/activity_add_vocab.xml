@@ -60,8 +60,8 @@
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:onClick="acceptButtonPressed"
-        android:text="Accept" />
+        android:text="Accept"
+        android:layout_below="@+id/addButton"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

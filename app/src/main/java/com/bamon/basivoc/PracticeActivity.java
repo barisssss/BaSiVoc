@@ -94,6 +94,4 @@ public class PracticeActivity extends AppCompatActivity {
             finish();
         }
     }
-
-
 }
