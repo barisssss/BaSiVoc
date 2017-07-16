@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.bamon.basivoc.db.DatabaseHelper;
 import com.bamon.basivoc.db.VocabItem;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 
@@ -24,9 +26,11 @@ public class PracticeActivity extends AppCompatActivity {
     int rightVocs;
     int wrongVocs;
     int length;
+    int i;
     ProgressBar pb;
     Random random;
     VocabItem vocab;
+    ArrayList<Integer> indices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +40,21 @@ public class PracticeActivity extends AppCompatActivity {
         rightVocs = 0;
         wrongVocs = 0;
         random = new Random();
+
         va = (TextView) findViewById(R.id.vocAnzeige);
         tA = (Button) findViewById(R.id.turnAroundButton);
         knew = (Button) findViewById(R.id.knewButton);
         wrong = (Button) findViewById(R.id.wrongButton);
         db = new DatabaseHelper(this, null, null, 1);
         length = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2)).size();
+        indices = new ArrayList<>(length);
+        for (int i = 1; i<=length; i++){
+            indices.add(i);
+        }
+        Collections.shuffle(indices);
         pb = (ProgressBar) findViewById(R.id.progressBar);
         pb.setMax(prefs.getInt("currentPracticeLength", 10));
-        vocab = db.getVocabItem(random.nextInt(length),
+        vocab = db.getVocabItem(indices.get(i++),
                 prefs.getInt("currentLanguage1", 1),
                 prefs.getInt("currentLanguage2", 2));
         va.setText(vocab.getPhrase1());
@@ -60,11 +70,13 @@ public class PracticeActivity extends AppCompatActivity {
 
     public void knewwrongClicked(View v){
         Button pressedButton = (Button) v;
+
         pb.setProgress(pb.getProgress()+1);
         tA.setVisibility(View.VISIBLE);
         knew.setVisibility(View.GONE);
         wrong.setVisibility(View.GONE);
-        vocab = db.getVocabItem(random.nextInt(length),
+
+        vocab = db.getVocabItem(indices.get(++i),
                 prefs.getInt("currentLanguage1", 1),
                 prefs.getInt("currentLanguage2", 2));
         va.setText(vocab.getPhrase1());
