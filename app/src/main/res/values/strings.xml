@@ -4,11 +4,11 @@
     <string name="practice">Practice</string>
     <string name="edit">Edit</string>
     <string name="list">List</string>
-    <string name="welcome">Welcome to our Vocabulary Trainer!</string>
+    <string name="welcome">Welcome to your Vocabulary Trainer!</string>
     <string name="sprache_2">Sprache 2</string>
     <string name="sprache_1">Sprache 1</string>
     <string name="add">Add</string>
-    <string name="greeting">Hey, this is your first time using your new Vocabulary Trainer!</string>
+    <string name="greeting">Hey, this is the first time using your new Vocabulary Trainer!</string>
     <string name="hint">Let\'s get started by selecting which languages you\'d like to practice first:</string>
     <string name="firstLangLabel">Your preferred first language:</string>
     <string name="secondLangLabel">Your preferred second language:</string>
@@ -18,5 +18,5 @@
     <string name="clearDB">Clear Database</string>
     <string name="accept">Accept</string>
     <string name="switchHint">Only show items of selected languages</string>
-    
+
 </resources>

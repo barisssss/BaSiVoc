@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.bamon.basivoc.db.DatabaseHelper;
 import com.bamon.basivoc.db.Languages;
 
+import java.io.File;
 import java.util.List;
 
 public class OptionsActivity extends AppCompatActivity {
@@ -85,4 +86,11 @@ public class OptionsActivity extends AppCompatActivity {
         lang2.setSelection(prefs.getInt("currentLanguage2", 2) - 1);
     }
 
+    public void clearDBPressed(View v){
+        File dbFile = this.getDatabasePath("vocabulary.db");
+        dbFile.delete();
+        Intent i = new Intent(this, SplashActivity.class);
+        startActivity(i);
+        finish();
+    }
 }

@@ -32,7 +32,6 @@ import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
 
-    private ListAdapter la;
     DatabaseHelper db;
     List <VocabItem> vocList;
     SharedPreferences prefs;
@@ -77,6 +76,7 @@ public class ListActivity extends AppCompatActivity {
         {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
                 return false;
             }
         });

@@ -15,34 +15,40 @@
         android:id="@+id/labelForLang1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:text="@string/firstLangLabel" />
 
     <Spinner
         android:id="@+id/spinner_language1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"/>
 
     <TextView
         android:id="@+id/labelForLang2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:text="@string/secondLangLabel" />
 
     <Spinner
         android:id="@+id/spinner_language2"
         android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
         android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/addLangText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/addLang"/>
+        android:text="@string/addLang"
+        android:layout_marginBottom="4dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
 
         <EditText
             android:id="@+id/newLangET"
@@ -66,7 +72,8 @@
         android:text="@string/practice_length"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/practiceLength" />
+        android:id="@+id/practiceLength"
+        android:layout_marginBottom="4dp"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -80,7 +87,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/clearDatabase"
-        style="@style/Widget.AppCompat.Button.Borderless" />
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:onClick="clearDBPressed"/>
 
     <Button
         android:text="@string/accept"

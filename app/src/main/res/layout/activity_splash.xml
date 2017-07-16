@@ -25,12 +25,12 @@
         android:id="@+id/hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/greeting"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="59dp"
+        android:layout_marginTop="44dp"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:text="@string/hint" />
+        android:text="@string/hint"
+        android:layout_below="@+id/greeting"
+        android:layout_alignParentStart="true" />
 
     <Spinner
         android:id="@+id/lang1Spinner"
@@ -75,5 +75,16 @@
         android:layout_alignParentEnd="true"
         android:onClick="nextClicked"
         android:contentDescription="@string/desc_next"/>
+
+    <TextView
+        android:id="@+id/moreInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You can add more languages in the options menu later on!\nClick the arrow below and start adding phrases to your vocabulary!"
+        android:layout_above="@+id/nextBtn"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="12dp" />
 
 </RelativeLayout>
