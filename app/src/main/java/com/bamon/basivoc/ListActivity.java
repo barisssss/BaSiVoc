@@ -1,10 +1,14 @@
 package com.bamon.basivoc;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -69,21 +73,17 @@ public class ListActivity extends AppCompatActivity {
 
 
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
         {
             @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
-            {
-                AlertDialog.Builder adb = new AlertDialog.Builder(
-                        context);
-                adb.setTitle("List");
-                adb.show();
-
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                return false;
             }
         });
 
 
     }
+
 
     private static class ViewHolder {
         TextView language1, language2;
@@ -120,5 +120,6 @@ public class ListActivity extends AppCompatActivity {
         }
 
     }
+
 
 }

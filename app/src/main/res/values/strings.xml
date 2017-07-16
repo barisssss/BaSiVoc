@@ -18,4 +18,5 @@
     <string name="clearDB">Clear Database</string>
     <string name="accept">Accept</string>
     <string name="switchHint">Only show items of selected languages</string>
+    
 </resources>
