@@ -68,5 +68,13 @@
         android:text="@string/practice"
         android:textSize="18sp" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@mipmap/mascot_mainmenu"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/practiceBtn" />
+
 
 </RelativeLayout>

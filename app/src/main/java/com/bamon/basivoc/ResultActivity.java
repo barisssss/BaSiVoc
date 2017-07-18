@@ -48,12 +48,15 @@ public class ResultActivity extends AppCompatActivity {
 
         if(rightVocabs < third1){
             mS.setText("Sir, you suck!");
+            rIM.setImageResource(R.mipmap.mascot_red);
         }
         else if(rightVocabs >= third1 && rightVocabs <third2){
             mS.setText("Sir, you can do better!");
+            rIM.setImageResource(R.mipmap.mascot_yellow);
         }
         else if(rightVocabs >= third2 && rightVocabs < max){
             mS.setText("Quite good!");
+            rIM.setImageResource(R.mipmap.mascot_green);
         }
         else{
             mS.setText("My man!");
