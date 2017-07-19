@@ -1,9 +1,14 @@
 package com.bamon.basivoc;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
+import com.bamon.basivoc.db.DatabaseHelper;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -24,8 +29,14 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void startPracticeAct(View v){
-        Intent i = new Intent(this, PracticeActivity.class);
-        startActivity(i);
+        DatabaseHelper db = new DatabaseHelper(this, null, null, 1);
+        SharedPreferences prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+        if(db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2)).size() == 0){
+            Toast.makeText(this, "Please add some Phrases to your Vocabulary firat!", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent i = new Intent(this, PracticeActivity.class);
+            startActivity(i);
+        }
     }
 
     public void startEditAct(View v){

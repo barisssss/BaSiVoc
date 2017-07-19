@@ -2,6 +2,7 @@ package com.bamon.basivoc;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -51,7 +52,8 @@ public class PracticeActivity extends AppCompatActivity {
         pb = (ProgressBar) findViewById(R.id.progressBar);
         pb.setMax(prefs.getInt("currentPracticeLength", 10));
         if(vocabulary.size() != 0) vocab = vocabulary.get(random.nextInt(vocabulary.size()));
-
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/kartei.ttf");
+        va.setTypeface(custom_font);
         va.setText(vocab.getPhrase1());
         vocabulary.remove(vocab);
 

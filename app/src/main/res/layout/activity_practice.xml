@@ -23,6 +23,8 @@
         android:layout_weight="1"
         android:background="@mipmap/memory_card"
         android:text=""
+        android:fontFamily="cursive"
+        android:textSize="50sp"
         android:gravity="center" />
 
     <Button
@@ -31,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textSize="18sp"
         android:onClick="turnAround"
         android:visibility="visible"
         android:text="Turn Around!" />
@@ -43,6 +46,7 @@
         android:layout_weight="0.5"
         android:onClick="knewwrongClicked"
         android:text="I knew it!"
+        android:textSize="18sp"
         android:visibility="gone" />
 
     <Button
@@ -53,6 +57,7 @@
         android:layout_weight="0.3"
         android:onClick="knewwrongClicked"
         android:text="I was wrong..."
+        android:textSize="18sp"
         android:visibility="gone" />
 
 </LinearLayout>

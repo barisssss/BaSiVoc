@@ -1,9 +1,11 @@
 package com.bamon.basivoc;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Build;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -76,7 +78,27 @@ public class ListActivity extends AppCompatActivity {
         {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
+                /*AlertDialog.Builder builder;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    builder = new android.support.v7.app.AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
+                } else {
+                    builder = new android.support.v7.app.AlertDialog.Builder(context);
+                }
+                builder.setTitle("Delete entry")
+                        .setMessage("Are you sure you want to delete this entry?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();*/
+                DatabaseHelper db = new DatabaseHelper(context, null, null, 1);
                 return false;
             }
         });

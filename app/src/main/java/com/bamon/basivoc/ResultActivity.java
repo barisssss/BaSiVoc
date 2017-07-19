@@ -60,6 +60,7 @@ public class ResultActivity extends AppCompatActivity {
         }
         else{
             mS.setText("My man!");
+            rIM.setImageResource(R.mipmap.mascot_green);
         }
     }
 
