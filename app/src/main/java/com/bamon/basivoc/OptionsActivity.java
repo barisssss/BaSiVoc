@@ -1,8 +1,11 @@
 package com.bamon.basivoc;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -91,10 +94,25 @@ public class OptionsActivity extends AppCompatActivity {
     }
 
     public void clearDBPressed(View v){
-        File dbFile = this.getDatabasePath("vocabulary.db");
-        dbFile.delete();
-        Intent i = new Intent(this, SplashActivity.class);
-        startActivity(i);
-        finish();
+        AlertDialog.Builder builder;
+        builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.clearDB))
+            .setMessage(getString(R.string.clearDBSure))
+            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    File dbFile = getApplicationContext().getDatabasePath("vocabulary.db");
+                    dbFile.delete();
+                    Intent i = new Intent(getApplicationContext(), SplashActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            })
+            .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    // do nothing
+                }
+            })
+            .show();
+
     }
 }

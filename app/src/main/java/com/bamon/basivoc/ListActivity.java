@@ -1,6 +1,8 @@
 package com.bamon.basivoc;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -15,6 +17,7 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bamon.basivoc.db.DatabaseHelper;
 import com.bamon.basivoc.db.VocabItem;
@@ -59,16 +62,14 @@ public class ListActivity extends AppCompatActivity {
                     editor.putBoolean("langSwitch", true);
                     editor.apply();
                     vocList = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
-                    adapter = new MyAdapter(context, R.layout.vocab_item, vocList);
-                    lv.setAdapter(adapter);
                 } else {
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putBoolean("langSwitch", false);
                     editor.apply();
                     vocList = db.getEntireVocabulary();
-                    adapter = new MyAdapter(context, R.layout.vocab_item, vocList);
-                    lv.setAdapter(adapter);
                 }
+                adapter = new MyAdapter(context, R.layout.vocab_item, vocList);
+                lv.setAdapter(adapter);
             }
         });
 
@@ -77,18 +78,21 @@ public class ListActivity extends AppCompatActivity {
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
         {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                /*AlertDialog.Builder builder;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    builder = new android.support.v7.app.AlertDialog.Builder(context, android.R.style.Theme_Material_Dialog_Alert);
-                } else {
-                    builder = new android.support.v7.app.AlertDialog.Builder(context);
-                }
-                builder.setTitle("Delete entry")
-                        .setMessage("Are you sure you want to delete this entry?")
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder builder;
+                builder = new AlertDialog.Builder(ListActivity.this);
+                builder.setTitle(getString(R.string.delete))
+                        .setMessage(getString(R.string.deleteMessage))
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                // continue with delete
+                                db.deleteVocab(vocList.get(position).get_id());
+                                if(langSwitch.isChecked()){
+                                    vocList = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
+                                } else {
+                                    vocList = db.getEntireVocabulary();
+                                }
+                                adapter = new MyAdapter(context, R.layout.vocab_item, vocList);
+                                lv.setAdapter(adapter);
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -96,8 +100,7 @@ public class ListActivity extends AppCompatActivity {
                                 // do nothing
                             }
                         })
-                        .setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();*/
+                        .show();
 
                 return false;
             }

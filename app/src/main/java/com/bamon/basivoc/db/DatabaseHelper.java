@@ -178,7 +178,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         vocab.setLanguageOfPhrase2(c.getInt(c.getColumnIndex(COLUMN_LANGUAGE_OF_PHRASE2)));
 
         c.close();
-        db.close();
         return vocab;
     }
 

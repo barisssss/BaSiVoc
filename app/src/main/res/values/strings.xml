@@ -40,5 +40,8 @@
     <string name="added">Successfully added!</string>
     <string name="emptyLang">That\'s not a language!</string>
     <string name="logoDesc">logo</string>
+    <string name="clearDBSure">Are you sure you want to clear the entire database?</string>
+    <string name="delete">Delete Entry</string>
+    <string name="deleteMessage">Are you sure you want to delete this entry?</string>
 
 </resources>

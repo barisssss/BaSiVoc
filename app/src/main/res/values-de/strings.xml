@@ -37,4 +37,7 @@
     <string name="toastAddPhrases">Bitte füge erst ein paar Vokabeln hinzu!</string>
     <string name="added">Erfolgreich hinzugefügt!</string>
     <string name="emptyLang">Das ist keine Sprache!</string>
+    <string name="clearDBSure">Bist du dir sicher, dass du deine gesamte Datenbank zurücksetzen willst?</string>
+    <string name="delete">Lösche Eintrag</string>
+    <string name="deleteMessage">Bist du dir sicher, dass du diesen Eintrag löschen möchtest?</string>
 </resources>
