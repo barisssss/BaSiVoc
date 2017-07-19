@@ -4,11 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,7 +17,6 @@ import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bamon.basivoc.db.DatabaseHelper;
 import com.bamon.basivoc.db.VocabItem;
@@ -75,6 +74,7 @@ public class ListActivity extends AppCompatActivity {
 
 
 
+        // long click listener for a list item, showing a delete dialog
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
         {
             @Override
@@ -114,6 +114,7 @@ public class ListActivity extends AppCompatActivity {
         TextView phrase1, phrase2, language1, language2;
     }
 
+    // inner class for adapter to show the contents of the list
     private class MyAdapter extends ArrayAdapter {
 
         public MyAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List objects) {

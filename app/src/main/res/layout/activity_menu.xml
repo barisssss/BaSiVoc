@@ -54,7 +54,7 @@
         android:layout_above="@+id/listBtn"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:onClick="startEditAct"
+        android:onClick="startAddAct"
         android:text="@string/add" />
 
     <Button

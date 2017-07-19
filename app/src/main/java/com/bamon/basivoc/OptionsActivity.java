@@ -4,13 +4,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -73,26 +71,23 @@ public class OptionsActivity extends AppCompatActivity {
     }
 
     private void loadSpinnerData() {
-        // database handler
         DatabaseHelper db = new DatabaseHelper(this, null, null, 1);
 
-        // Spinner Drop down elements
         List<Languages> languages = db.getAllLanguages();
 
         // Creating adapter for spinner
         ArrayAdapter<Languages> dataAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, languages);
 
-        // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // attaching data adapter to spinner
         lang1.setAdapter(dataAdapter);
         lang2.setAdapter(dataAdapter);
         lang1.setSelection(prefs.getInt("currentLanguage1", 1) - 1);
         lang2.setSelection(prefs.getInt("currentLanguage2", 2) - 1);
     }
 
+    //shows confirmation dialog when clearDB button has been pressed
     public void clearDBPressed(View v){
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this);

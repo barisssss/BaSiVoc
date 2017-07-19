@@ -3,8 +3,8 @@ package com.bamon.basivoc;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -39,7 +39,7 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    public void startEditAct(View v){
+    public void startAddAct(View v){
         Intent i = new Intent(this, AddVocabActivity.class);
         startActivity(i);
     }
