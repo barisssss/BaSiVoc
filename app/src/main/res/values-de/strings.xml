@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="accept">Akzeptieren</string>
+    <string name="add">Hinzufügen</string>
+    <string name="addLang">Füge eine weitere Sprache hinzu:</string>
+    <string name="bestResult">Perfekt!</string>
+    <string name="clearDB">Setze Datenbank zurück</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="firstLangLabel">Deine bevorzugte erste Sprache</string>
+    <string name="greeting">Hey, das ist das erste Mal, dass du deinen neuen Vokabeltrainer nutzt!</string>
+    <string name="hint">Leg mit der Auswahl deiner gewünschten Sprachen los:</string>
+    <string name="list">Liste</string>
+    <string name="practice">Üben</string>
+    <string name="practice_length">Übungslänge</string>
+    <string name="secondBestResult">Ziemlich gut!</string>
+    <string name="secondLangLabel">Deine bevorzugte zweite Sprache</string>
+    <string name="secondWorstResult">Komm schon, das kannst du besser!</string>
+    <string name="settings">Einstellungen</string>
+    <string name="sprache_1">Sprache 1</string>
+    <string name="switchHint">Zeige nur Vokabeln deiner ausgewählten Sprachen</string>
+    <string name="welcome">Willkommen zu deinem Vokabeltrainer!</string>
+    <string name="worstResult">Du musst noch viel lernen!</string>
+    <string name="turn_around">Dreh um!</string>
+    <string name="i_knew_it">Ich wusste es!</string>
+    <string name="i_was_wrong">Daneben…</string>
+    <string name="here_is_your_practice_result">Hier ist dein Ergebnis:</string>
+    <string name="main_menu">Hauptmenü</string>
+    <string name="right">Richtig:</string>
+    <string name="try_again">Nochmal</string>
+    <string name="wrong">Falsch:</string>
+    <string name="german">Deutsch</string>
+    <string name="english">Englisch</string>
+    <string name="french">Französisch</string>
+    <string name="italian">Italienisch</string>
+    <string name="spanish">Spanisch</string>
+    <string name="hint2">Du kannst im Optionenmenü mehr Sprachen hinzufügen.\nKlick auf den Pfeil unten und füge deinem Trainer Vokabeln hinzu!</string>
+    <string name="toastAddPhrases">Bitte füge erst ein paar Vokabeln hinzu!</string>
+    <string name="added">Erfolgreich hinzugefügt!</string>
+    <string name="emptyLang">Das ist keine Sprache!</string>
+</resources>

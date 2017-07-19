@@ -1,17 +1,10 @@
 package com.bamon.basivoc;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.os.Build;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,17 +12,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bamon.basivoc.db.DatabaseHelper;
-import com.bamon.basivoc.db.Languages;
 import com.bamon.basivoc.db.VocabItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
@@ -40,6 +29,7 @@ public class ListActivity extends AppCompatActivity {
     Switch langSwitch;
     Context context;
     ListView lv;
+    MyAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,24 +40,34 @@ public class ListActivity extends AppCompatActivity {
         prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         db = new DatabaseHelper(this, null, null, 1);
         langSwitch = (Switch) findViewById(R.id.langSwitch);
+        langSwitch.setChecked(prefs.getBoolean("langSwitch", false));
         lv = (ListView) findViewById(R.id.listView);
+
         if(langSwitch.isChecked()){
             vocList = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
-            lv.setAdapter(new MyAdapter(context, R.layout.vocab_item, vocList));
         } else {
             vocList = db.getEntireVocabulary();
-            lv.setAdapter(new MyAdapter(context, R.layout.vocab_item, vocList));
         }
+        adapter = new MyAdapter(this, R.layout.vocab_item, vocList);
+        lv.setAdapter(adapter);
 
         langSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean("langSwitch", true);
+                    editor.apply();
                     vocList = db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
-                    lv.setAdapter(new MyAdapter(context, R.layout.vocab_item, vocList));
+                    adapter = new MyAdapter(context, R.layout.vocab_item, vocList);
+                    lv.setAdapter(adapter);
                 } else {
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean("langSwitch", false);
+                    editor.apply();
                     vocList = db.getEntireVocabulary();
-                    lv.setAdapter(new MyAdapter(context, R.layout.vocab_item, vocList));
+                    adapter = new MyAdapter(context, R.layout.vocab_item, vocList);
+                    lv.setAdapter(adapter);
                 }
             }
         });
@@ -98,7 +98,7 @@ public class ListActivity extends AppCompatActivity {
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .show();*/
-                DatabaseHelper db = new DatabaseHelper(context, null, null, 1);
+
                 return false;
             }
         });
@@ -108,7 +108,7 @@ public class ListActivity extends AppCompatActivity {
 
 
     private static class ViewHolder {
-        TextView language1, language2;
+        TextView phrase1, phrase2, language1, language2;
     }
 
     private class MyAdapter extends ArrayAdapter {
@@ -127,16 +127,22 @@ public class ListActivity extends AppCompatActivity {
             }
 
             ViewHolder vh = new ViewHolder();
+            vh.phrase1 = (TextView) convertView.findViewById(R.id.phrase1);
+            vh.phrase2 = (TextView) convertView.findViewById(R.id.phrase2);
             vh.language1 = (TextView) convertView.findViewById(R.id.lang1);
             vh.language2 = (TextView) convertView.findViewById(R.id.lang2);
 
             convertView.setTag(vh);
 
+            TextView phrase1 = ((ViewHolder)convertView.getTag()).phrase1;
+            TextView phrase2 = ((ViewHolder)convertView.getTag()).phrase2;
             TextView lang1 = ((ViewHolder)convertView.getTag()).language1;
             TextView lang2 = ((ViewHolder)convertView.getTag()).language2;
 
-            lang1.setText(currentVocab.getPhrase1());
-            lang2.setText(currentVocab.getPhrase2());
+            phrase1.setText(currentVocab.getPhrase1());
+            phrase2.setText(currentVocab.getPhrase2());
+            lang1.setText(db.getLanguage(currentVocab.getLanguageOfPhrase1()).getLanguage());
+            lang2.setText(db.getLanguage(currentVocab.getLanguageOfPhrase2()).getLanguage());
 
             return convertView;
         }

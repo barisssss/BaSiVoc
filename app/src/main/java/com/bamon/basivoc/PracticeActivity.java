@@ -82,7 +82,7 @@ public class PracticeActivity extends AppCompatActivity {
         }
         if (pb.getProgress() != pb.getMax()) va.setText(vocab.getPhrase1());
         vocabulary.remove(vocab);
-        if(pressedButton.getText().equals("I knew it!")){
+        if(pressedButton.equals(knew)){
             rightVocs++;
         }
         else{

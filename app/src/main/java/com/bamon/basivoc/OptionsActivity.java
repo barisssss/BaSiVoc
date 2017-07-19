@@ -44,13 +44,13 @@ public class OptionsActivity extends AppCompatActivity {
     public void addLangClicked(View v){
         addLangET = (EditText) findViewById(R.id.newLangET);
         if(addLangET.getText().toString().equals("")){
-            Toast.makeText(this, "You can't add empty languages!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.emptyLang), Toast.LENGTH_SHORT).show();
         } else {
             DatabaseHelper db = new DatabaseHelper(this, null, null, 1);
             db.addLanguage(new Languages(addLangET.getText()+""));
             addLangET.setText("");
             loadSpinnerData();
-            Toast.makeText(this, "Language added!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.added), Toast.LENGTH_SHORT).show();
         }
     }
 

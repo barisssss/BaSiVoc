@@ -8,8 +8,6 @@ public class VocabItem {
     private String phrase2;
     private int languageOfPhrase1;
     private int languageOfPhrase2;
-    private int dateAdded;
-    private int timesPracticed;
 
     public VocabItem() {
     }
@@ -49,22 +47,6 @@ public class VocabItem {
 
     public void setLanguageOfPhrase2(int languageOfPhrase2) {
         this.languageOfPhrase2 = languageOfPhrase2;
-    }
-
-    public int getDateAdded() {
-        return dateAdded;
-    }
-
-    public void setDateAdded(int dateAdded) {
-        this.dateAdded = dateAdded;
-    }
-
-    public int getTimesPracticed() {
-        return timesPracticed;
-    }
-
-    public void setTimesPracticed(int timesPracticed) {
-        this.timesPracticed = timesPracticed;
     }
 
     public int get_id() {

@@ -32,7 +32,7 @@ public class MenuActivity extends AppCompatActivity {
         DatabaseHelper db = new DatabaseHelper(this, null, null, 1);
         SharedPreferences prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         if(db.getVocabulary(prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2)).size() == 0){
-            Toast.makeText(this, "Please add some Phrases to your Vocabulary firat!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.toastAddPhrases), Toast.LENGTH_SHORT).show();
         } else {
             Intent i = new Intent(this, PracticeActivity.class);
             startActivity(i);

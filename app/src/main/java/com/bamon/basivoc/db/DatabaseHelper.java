@@ -13,41 +13,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
-    public static final String DB_NAME = "vocabulary.db";
-    public static final int DB_VERSION = 1;
+    private static final String DB_NAME = "vocabulary.db";
+    private static final int DB_VERSION = 2;
 
     //Strings for Table names
-    public static final String TABLE_VOCAB_LIST = "vocab_item";
-    public static final String TABLE_LANGUAGES = "languages";
+    private static final String TABLE_VOCAB_LIST = "vocab_item";
+    private static final String TABLE_LANGUAGES = "languages";
 
     //Reusable Columns
-    public static final String COLUMN_ID = "_id";
+    private static final String COLUMN_ID = "_id";
 
     //Columns for VocabItem
-    public static final String COLUMN_PHRASE1 = "phrase1";
-    public static final String COLUMN_PHRASE2 = "phrase2";
-    public static final String COLUMN_LANGUAGE_OF_PHRASE1 = "language_of_phrase1";
-    public static final String COLUMN_LANGUAGE_OF_PHRASE2 = "language_of_phrase2";
-    public static final String COLUMN_DATE_ADDED = "date_added";
-    public static final String COLUMN_TIMES_PRACTICED = "times_practiced";
+    private static final String COLUMN_PHRASE1 = "phrase1";
+    private static final String COLUMN_PHRASE2 = "phrase2";
+    private static final String COLUMN_LANGUAGE_OF_PHRASE1 = "language_of_phrase1";
+    private static final String COLUMN_LANGUAGE_OF_PHRASE2 = "language_of_phrase2";
 
     //Columns for Languages
-    public static final String COLUMN_LANGUAGE = "language";
+    private static final String COLUMN_LANGUAGE = "language";
 
     //create table sql statement for vocab list
-    public static final String CREATE_VOCAB_LIST_TABLE =
+    private static final String CREATE_VOCAB_LIST_TABLE =
             "CREATE TABLE " + TABLE_VOCAB_LIST + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_PHRASE1 + " TEXT NOT NULL, " +
                 COLUMN_PHRASE2 + " TEXT NOT NULL, " +
                 COLUMN_LANGUAGE_OF_PHRASE1 + " INTEGER, " +
-                COLUMN_LANGUAGE_OF_PHRASE2 + " INTEGER, " +
-                COLUMN_DATE_ADDED + " INTEGER, " +
-                COLUMN_TIMES_PRACTICED + " INTEGER" +
+                COLUMN_LANGUAGE_OF_PHRASE2 + " INTEGER" +
             ");";
 
     //create table sql statement for languages
-    public static final String CREATE_LANGUAGES_TABLE =
+    private static final String CREATE_LANGUAGES_TABLE =
             "CREATE TABLE " + TABLE_LANGUAGES + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_LANGUAGE + " TEXT NOT NULL UNIQUE" +
@@ -85,8 +81,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         values.put(COLUMN_PHRASE2, item.getPhrase2());
         values.put(COLUMN_LANGUAGE_OF_PHRASE1, lang1_id);
         values.put(COLUMN_LANGUAGE_OF_PHRASE2, lang2_id);
-        values.put(COLUMN_DATE_ADDED, 1); //TODO figure out dates
-        values.put(COLUMN_TIMES_PRACTICED, 0);
 
         db.insert(TABLE_VOCAB_LIST, null, values);
 
@@ -102,24 +96,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.close();
     }
 
-    //will be called when a vocab has been practiced
-    public void updateTimesPracticed(int index){
-        SQLiteDatabase db = getWritableDatabase();
-
-        int newTimesPracticed = getVocabItem(index).getTimesPracticed() + 1;
-
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_TIMES_PRACTICED, newTimesPracticed);
-
-        db.update(TABLE_VOCAB_LIST, values, COLUMN_ID + "=?", new String[]{String.valueOf(index)});
-        db.close();
-    }
-
     //get all vocabs of all languages in one list
     public List<VocabItem> getEntireVocabulary(){
         SQLiteDatabase db = getReadableDatabase();
 
-        List<VocabItem> vocabulary = new ArrayList<VocabItem>();
+        List<VocabItem> vocabulary = new ArrayList<>();
 
         String selectQuery = "SELECT * FROM " + TABLE_VOCAB_LIST + ";";
 
@@ -132,8 +113,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 vocab.setPhrase2(c.getString(c.getColumnIndex(COLUMN_PHRASE2)));
                 vocab.setLanguageOfPhrase1(c.getInt(c.getColumnIndex(COLUMN_LANGUAGE_OF_PHRASE1)));
                 vocab.setLanguageOfPhrase2(c.getInt(c.getColumnIndex(COLUMN_LANGUAGE_OF_PHRASE2)));
-                vocab.setDateAdded(c.getInt(c.getColumnIndex(COLUMN_DATE_ADDED)));
-                vocab.setTimesPracticed(c.getInt(c.getColumnIndex(COLUMN_TIMES_PRACTICED)));
 
                 vocabulary.add(vocab);
             } while (c.moveToNext());
@@ -153,7 +132,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         int lang2_id = getLanguage(lang2).get_id();
 
         //create vocabulary arraylist
-        List<VocabItem> vocabulary = new ArrayList<VocabItem>();
+        List<VocabItem> vocabulary = new ArrayList<>();
 
         //Select Query to select only vocabs in selected languages
         String selectQuery = "SELECT * FROM " + TABLE_VOCAB_LIST + " WHERE "
@@ -171,8 +150,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 vocab.setPhrase2(c.getString(c.getColumnIndex(COLUMN_PHRASE2)));
                 vocab.setLanguageOfPhrase1(lang1_id);
                 vocab.setLanguageOfPhrase2(lang2_id);
-                vocab.setDateAdded(c.getInt(c.getColumnIndex(COLUMN_DATE_ADDED)));
-                vocab.setTimesPracticed(c.getInt(c.getColumnIndex(COLUMN_TIMES_PRACTICED)));
 
                 vocabulary.add(vocab);
             } while (c.moveToNext());
@@ -199,8 +176,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         vocab.setPhrase2(c.getString(c.getColumnIndex(COLUMN_PHRASE2)));
         vocab.setLanguageOfPhrase1(c.getInt(c.getColumnIndex(COLUMN_LANGUAGE_OF_PHRASE1)));
         vocab.setLanguageOfPhrase2(c.getInt(c.getColumnIndex(COLUMN_LANGUAGE_OF_PHRASE2)));
-        vocab.setDateAdded(c.getInt(c.getColumnIndex(COLUMN_DATE_ADDED)));
-        vocab.setTimesPracticed(c.getInt(c.getColumnIndex(COLUMN_TIMES_PRACTICED)));
 
         c.close();
         db.close();
@@ -228,8 +203,6 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         vocab.setPhrase2(c.getString(c.getColumnIndex(COLUMN_PHRASE2)));
         vocab.setLanguageOfPhrase1(c.getInt(c.getColumnIndex(COLUMN_LANGUAGE_OF_PHRASE1)));
         vocab.setLanguageOfPhrase2(c.getInt(c.getColumnIndex(COLUMN_LANGUAGE_OF_PHRASE2)));
-        vocab.setDateAdded(c.getInt(c.getColumnIndex(COLUMN_DATE_ADDED)));
-        vocab.setTimesPracticed(c.getInt(c.getColumnIndex(COLUMN_TIMES_PRACTICED)));
 
         c.close();
         db.close();
@@ -259,7 +232,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public List<Languages> getAllLanguages(){
         SQLiteDatabase db = getReadableDatabase();
 
-        List<Languages> languages = new ArrayList<Languages>();
+        List<Languages> languages = new ArrayList<>();
 
         String selectQuery = "SELECT * FROM " + TABLE_LANGUAGES + ";";
 

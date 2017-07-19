@@ -29,7 +29,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-
         if(doesDatabaseExist(this, "vocabulary.db")){
             Intent i = new Intent(this, MenuActivity.class);
             startActivity(i);
@@ -39,11 +38,12 @@ public class SplashActivity extends AppCompatActivity {
             lang1 = (Spinner) findViewById(R.id.lang1Spinner);
             lang2 = (Spinner) findViewById(R.id.lang2Spinner);
             db = new DatabaseHelper(this, null, null, 1);
-            db.addLanguage(new Languages("German"));
-            db.addLanguage(new Languages("English"));
-            db.addLanguage(new Languages("Italian"));
-            db.addLanguage(new Languages("Spanish"));
-            db.addLanguage(new Languages("French"));
+
+            db.addLanguage(new Languages(getString(R.string.german)));
+            db.addLanguage(new Languages(getString(R.string.english)));
+            db.addLanguage(new Languages(getString(R.string.spanish)));
+            db.addLanguage(new Languages(getString(R.string.italian)));
+            db.addLanguage(new Languages(getString(R.string.french)));
             loadSpinnerData();
             lang1.setSelection(0);
             lang2.setSelection(1);

@@ -80,7 +80,7 @@
         android:id="@+id/moreInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You can add more languages in the options menu later on!\nClick the arrow below and start adding phrases to your vocabulary!"
+        android:text="@string/hint2"
         android:layout_above="@+id/nextBtn"
         android:textAlignment="center"
         android:textSize="16sp"

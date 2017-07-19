@@ -42,7 +42,7 @@ public class AddVocabActivity extends AppCompatActivity {
         dbh.addVocab(new VocabItem(l1I.getText()+"", l2I.getText()+""), prefs.getInt("currentLanguage1", 1), prefs.getInt("currentLanguage2", 2));
         l1I.setText("");
         l2I.setText("");
-        Toast.makeText(this, "Added sucessfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.added), Toast.LENGTH_SHORT).show();
     }
 
     public void acceptButtonPressed(View v){

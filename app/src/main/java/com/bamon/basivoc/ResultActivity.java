@@ -47,19 +47,19 @@ public class ResultActivity extends AppCompatActivity {
         int third2= third1 * 2;
 
         if(rightVocabs < third1){
-            mS.setText("Sir, you suck!");
+            mS.setText(R.string.worstResult);
             rIM.setImageResource(R.mipmap.mascot_red);
         }
         else if(rightVocabs >= third1 && rightVocabs <third2){
-            mS.setText("Sir, you can do better!");
+            mS.setText(R.string.secondWorstResult);
             rIM.setImageResource(R.mipmap.mascot_yellow);
         }
         else if(rightVocabs >= third2 && rightVocabs < max){
-            mS.setText("Quite good!");
+            mS.setText(R.string.secondBestResult);
             rIM.setImageResource(R.mipmap.mascot_green);
         }
         else{
-            mS.setText("My man!");
+            mS.setText(R.string.bestResult);
             rIM.setImageResource(R.mipmap.mascot_green);
         }
     }

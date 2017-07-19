@@ -19,6 +19,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="46dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textAlignment="center"
         android:id="@+id/textView" />
 
     <ImageButton
@@ -30,7 +31,8 @@
         android:elevation="0dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:onClick="startOptionsAct"/>
+        android:onClick="startOptionsAct"
+        android:contentDescription="@string/logoDesc"/>
 
     <Button
         android:text="@string/list"
@@ -53,7 +55,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
         android:onClick="startEditAct"
-        android:text="@string/edit" />
+        android:text="@string/add" />
 
     <Button
         android:id="@+id/practiceBtn"
@@ -74,7 +76,8 @@
         android:layout_height="200dp"
         app:srcCompat="@mipmap/mascot_mainmenu"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/practiceBtn" />
+        android:layout_above="@+id/practiceBtn"
+        android:contentDescription="@string/settings"/>
 
 
 </RelativeLayout>

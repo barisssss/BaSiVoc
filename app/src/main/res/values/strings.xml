@@ -1,22 +1,44 @@
 <resources>
-    <string name="app_name">BaSiVoc</string>
+    <string name="app_name" translatable="false">BaSiVoc</string>
     <string name="settings">Settings</string>
     <string name="practice">Practice</string>
     <string name="edit">Edit</string>
     <string name="list">List</string>
     <string name="welcome">Welcome to your Vocabulary Trainer!</string>
-    <string name="sprache_2">Sprache 2</string>
-    <string name="sprache_1">Sprache 1</string>
+    <string name="sprache_2" translatable="false">Sprache 2</string>
+    <string name="sprache_1" translatable="false">Sprache 1</string>
     <string name="add">Add</string>
     <string name="greeting">Hey, this is the first time using your new Vocabulary Trainer!</string>
     <string name="hint">Let\'s get started by selecting which languages you\'d like to practice first:</string>
     <string name="firstLangLabel">Your preferred first language:</string>
     <string name="secondLangLabel">Your preferred second language:</string>
-    <string name="desc_next">Next Button</string>
+    <string name="desc_next" translatable="false">Next Button</string>
     <string name="addLang">Add another language:</string>
     <string name="practice_length">Practice Length</string>
     <string name="clearDB">Clear Database</string>
     <string name="accept">Accept</string>
     <string name="switchHint">Only show items of selected languages</string>
+    <string name="worstResult">Sir, you suck!</string>
+    <string name="secondWorstResult">Come on, you can do better!</string>
+    <string name="secondBestResult">Quite good!</string>
+    <string name="bestResult">My man!</string>
+    <string name="turn_around">Turn Around!</string>
+    <string name="i_knew_it">I knew it!</string>
+    <string name="i_was_wrong">I was wrong…</string>
+    <string name="here_is_your_practice_result">These are your results:</string>
+    <string name="right">Right:</string>
+    <string name="wrong">Wrong:</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="try_again">Try Again</string>
+    <string name="german">German</string>
+    <string name="english">English</string>
+    <string name="french">French</string>
+    <string name="italian">Italian</string>
+    <string name="spanish">Spanish</string>
+    <string name="hint2">You can add more languages in the options menu later on! \nClick the arrow below and start adding phrases to your vocabulary!</string>
+    <string name="toastAddPhrases">Please add some Phrases to your Vocabulary first!</string>
+    <string name="added">Successfully added!</string>
+    <string name="emptyLang">That\'s not a language!</string>
+    <string name="logoDesc">logo</string>
 
 </resources>
