@@ -18,6 +18,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp"
+        android:textSize="18sp"
         android:text="@string/here_is_your_practice_result" />
 
     <TextView
@@ -28,6 +29,7 @@
         android:layout_below="@+id/resultOpeningText"
         android:layout_marginStart="48dp"
         android:layout_marginTop="53dp"
+        android:textSize="18sp"
         android:text="@string/right" />
 
     <TextView
@@ -35,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/wrong"
+        android:textSize="18sp"
         android:layout_alignBaseline="@+id/rightResults"
         android:layout_alignBottom="@+id/rightResults"
         android:layout_toEndOf="@+id/resultOpeningText" />
@@ -57,6 +60,7 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textAlignment="center"
+        android:textSize="18sp"
         android:layout_alignStart="@+id/resultOpeningText"
         android:layout_alignEnd="@+id/resultOpeningText"
         android:layout_above="@+id/tryAgainBtn" />
@@ -68,9 +72,10 @@
         android:layout_below="@+id/rightResults"
         android:layout_marginTop="26dp"
         android:textAlignment="center"
-        android:text=""
+        android:text="4"
         android:layout_alignStart="@+id/rightResults"
-        android:layout_alignEnd="@+id/rightResults" />
+        android:layout_alignEnd="@+id/rightResults"
+        android:textSize="25sp"/>
 
     <TextView
         android:id="@+id/wrongResultIndicator"
@@ -78,9 +83,10 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/rightResultIndicator"
         android:textAlignment="center"
-        android:text=""
+        android:text="4"
         android:layout_alignEnd="@+id/wrongResults"
-        android:layout_alignStart="@+id/wrongResults" />
+        android:layout_alignStart="@+id/wrongResults"
+        android:textSize="25sp"/>
 
     <Button
         android:id="@+id/button2"
