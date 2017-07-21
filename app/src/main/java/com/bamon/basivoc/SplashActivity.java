@@ -17,9 +17,9 @@ import java.util.List;
 
 public class SplashActivity extends AppCompatActivity {
 
-    DatabaseHelper db;
-    Spinner lang1, lang2;
-    SharedPreferences prefs;
+    private DatabaseHelper db;
+    private Spinner lang1, lang2;
+    private SharedPreferences prefs;
 
 
     @Override

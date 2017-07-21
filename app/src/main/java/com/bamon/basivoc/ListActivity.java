@@ -25,13 +25,13 @@ import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
 
-    DatabaseHelper db;
-    List <VocabItem> vocList;
-    SharedPreferences prefs;
-    Switch langSwitch;
-    Context context;
-    ListView lv;
-    MyAdapter adapter;
+    private DatabaseHelper db;
+    private List <VocabItem> vocList;
+    private SharedPreferences prefs;
+    private Switch langSwitch;
+    private Context context;
+    private ListView lv;
+    private MyAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

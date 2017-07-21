@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,11 +15,9 @@ import com.bamon.basivoc.db.VocabItem;
 
 public class AddVocabActivity extends AppCompatActivity {
 
-    TextView l1, l2;
-    Button add, accept;
-    EditText l1I, l2I;
-    SharedPreferences prefs;
-    DatabaseHelper dbh;
+    private EditText l1I, l2I;
+    private SharedPreferences prefs;
+    private DatabaseHelper dbh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +25,8 @@ public class AddVocabActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_vocab);
         dbh = new DatabaseHelper(this, null, null, 1);
         prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
-        l1 = (TextView) findViewById(R.id.language1);
-        l2 = (TextView) findViewById(R.id.language2);
-        add = (Button) findViewById(R.id.addButton);
-        accept = (Button) findViewById(R.id.acceptButton);
+        TextView l1 = (TextView) findViewById(R.id.language1);
+        TextView l2 = (TextView) findViewById(R.id.language2);
         l1I = (EditText) findViewById(R.id.language1Input);
         l2I = (EditText) findViewById(R.id.language2input);
         l1.setText(dbh.getLanguage(prefs.getInt("currentLanguage1", 1))+"");

@@ -21,9 +21,9 @@ import java.util.List;
 
 public class OptionsActivity extends AppCompatActivity {
 
-    Spinner lang1, lang2;
-    EditText lengthET, addLangET;
-    SharedPreferences prefs;
+    private Spinner lang1, lang2;
+    private EditText lengthET;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class OptionsActivity extends AppCompatActivity {
     }
 
     public void addLangClicked(View v){
-        addLangET = (EditText) findViewById(R.id.newLangET);
+        EditText addLangET = (EditText) findViewById(R.id.newLangET);
         if(addLangET.getText().toString().equals("")){
             Toast.makeText(this, getString(R.string.emptyLang), Toast.LENGTH_SHORT).show();
         } else {

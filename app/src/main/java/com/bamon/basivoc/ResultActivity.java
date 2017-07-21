@@ -9,34 +9,23 @@ import android.widget.TextView;
 
 public class ResultActivity extends AppCompatActivity {
 
-    int rightVocabs;
-    int wrongVocabs;
-    TextView rR;
-    TextView wR;
-    TextView rRI;
-    TextView wRI;
-    TextView mS;
-    ImageView rIM;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        rR = (TextView) findViewById(R.id.rightResults);
-        wR = (TextView) findViewById(R.id.wrongResults);
-        rRI = (TextView) findViewById(R.id.rightResultIndicator);
-        wRI = (TextView) findViewById(R.id.wrongResultIndicator);
-        mS = (TextView) findViewById(R.id.motivationalSpeech);
-        rIM = (ImageView) findViewById(R.id.resultIndicatorMascot);
+        TextView rRI = (TextView) findViewById(R.id.rightResultIndicator);
+        TextView wRI = (TextView) findViewById(R.id.wrongResultIndicator);
+        TextView mS = (TextView) findViewById(R.id.motivationalSpeech);
+        ImageView rIM = (ImageView) findViewById(R.id.resultIndicatorMascot);
 
         Intent intent = getIntent();
         Bundle daten = intent.getExtras();
-        rightVocabs = daten.getInt("Right");
-        wrongVocabs = daten.getInt("Wrong");
+        int rightVocabs = daten.getInt("Right");
+        int wrongVocabs = daten.getInt("Wrong");
 
-        rRI.setText(rightVocabs+"");
-        wRI.setText(wrongVocabs+"");
+        rRI.setText(rightVocabs +"");
+        wRI.setText(wrongVocabs +"");
 
         int max = rightVocabs + wrongVocabs;
         int third1 = max / 3;

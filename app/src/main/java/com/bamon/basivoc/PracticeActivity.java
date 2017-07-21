@@ -19,19 +19,17 @@ import java.util.Random;
 
 
 public class PracticeActivity extends AppCompatActivity {
-    DatabaseHelper db;
-    Button tA;
-    Button knew;
-    Button wrong;
-    TextView va;
-    SharedPreferences prefs;
-    int rightVocs;
-    int wrongVocs;
-    int i;
-    ProgressBar pb;
-    Random random;
-    VocabItem vocab;
-    List<VocabItem> vocabulary;
+
+    private DatabaseHelper db;
+    private Button tA, knew, wrong;
+    private TextView va;
+    private SharedPreferences prefs;
+    private int rightVocs;
+    private int wrongVocs;
+    private ProgressBar pb;
+    private Random random;
+    private VocabItem vocab;
+    private List<VocabItem> vocabulary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +38,6 @@ public class PracticeActivity extends AppCompatActivity {
         prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
         rightVocs = 0;
         wrongVocs = 0;
-        i=0;
         random = new Random();
 
         va = (TextView) findViewById(R.id.vocAnzeige);
